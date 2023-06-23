@@ -4,13 +4,13 @@ server:
 spring:
   application:
     name: api-catalog
-  mongodb:
-    embedded:
-      version: 4.0.2
   data:
     mongodb:
-      database: test
-      port: 27017
+      username: usr-final-mongo
+      password: pwd-final-mongo
+      database: api_catalog_db
+      port: 27019
+      host: localhost
 
 eureka:
   instance:
