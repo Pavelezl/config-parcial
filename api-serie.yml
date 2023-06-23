@@ -8,6 +8,6 @@ spring:
     mongodb:
       username: usr-final-mongo
       password: pwd-final-mongo
-      database: final-dev-mongo
+      database: api_serie_db
       port: 27019
       host: localhost
