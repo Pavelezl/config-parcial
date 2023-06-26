@@ -31,7 +31,7 @@ management:
         include: health, info
 resilience4j.retry:
   instances:
-    retryCustomer:
+    retryCatalog:
       maxAttempts: 3
       waitDuration: 10s
       enableExponentialBackoff: true
@@ -41,7 +41,7 @@ resilience4j.retry:
         - java.io.IOException
 resilience4j.circuitbreaker:
   instances:
-    clientCustomer:
+    clientCatalog:
       registerHealthIndicator: true
       slidingWindowSize: 10
       permittedNumberOfCallsInHalfOpenState: 3
