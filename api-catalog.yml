@@ -12,7 +12,6 @@ spring:
       database: api_catalog_db
       port: 27019
       host: localhost
-
 eureka:
   instance:
     hostname: localhost
@@ -22,7 +21,6 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
-
 management:
   info:
     env:
@@ -31,3 +29,24 @@ management:
     web:
       exposure:
         include: health, info
+resilience4j.retry:
+  instances:
+    retryCustomer:
+      maxAttempts: 3
+      waitDuration: 10s
+      enableExponentialBackoff: true
+      exponentialBackoffMultiplier: 2
+      retryExceptions:
+        - org.springframework.web.client.HttpServerErrorException
+        - java.io.IOException
+resilience4j.circuitbreaker:
+  instances:
+    clientCustomer:
+      registerHealthIndicator: true
+      slidingWindowSize: 10
+      permittedNumberOfCallsInHalfOpenState: 3
+      slidingWindowType: TIME_BASED
+      minimumNumberOfCalls: 20
+      waitDurationInOpenState: 50s
+      failureRateThreshold: 50
+      eventConsumerBufferSize: 10
